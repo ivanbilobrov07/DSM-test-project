@@ -1,32 +1,45 @@
-@font-face {
-    font-family: 'roboto';
-    src: url('../assets/fonts/Roboto-Thin.ttf');
-    font-weight: 200;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'roboto';
-    src: url('../assets/fonts/Roboto-Regular.ttf');
-    font-weight: 400;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'roboto';
-    src: url('../assets/fonts/Roboto-Medium.ttf');
-    font-weight: 700;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'roboto';
-    src: url('../assets/fonts/Roboto-Bold.ttf');
-    font-weight: 900;
-    font-display: swap;
-}
-
 * {
-    font-family: roboto, sans-serif;
-    font-weight: 400;
+	font-family: Inter, sans-serif;
+	font-weight: 400;
+}
+
+html {
+	box-sizing: border-box;
+}
+
+*,
+*::after,
+*::before {
+	box-sizing: inherit;
+}
+
+svg,
+img {
+	display: block;
+}
+
+button {
+	display: block;
+	background-color: transparent;
+	border: none;
+	cursor: pointer;
+	padding: 0;
+	color: inherit;
+}
+
+span {
+	font-size: inherit;
+	line-height: inherit;
+	font-weight: inherit;
+	color: inherit;
+}
+
+ul,
+ol {
+	list-style: none;
+}
+
+a {
+	text-decoration: none;
+	color: inherit;
 }

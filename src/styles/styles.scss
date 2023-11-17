@@ -1,0 +1,866 @@
+@import url("./reset.scss");
+@import url("./global.scss");
+@import url("./variables.scss");
+@import url("./mixins.scss");
+
+body {
+  font-family: Inter;
+  color: $primary-text-color;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.71;
+
+  @media screen and (min-width: $desktopBreakpoint) {
+    line-height: 2;
+  }
+}
+
+.container {
+  width: 100%;
+  padding: 0 12px;
+
+  @media screen and (min-width: $mobileBreakpoint) {
+    max-width: 360px;
+    margin: 0 auto;
+  }
+
+  @media screen and (min-width: $tabletBreakpoint) {
+    max-width: 768px;
+  }
+
+  @media screen and (min-width: $desktopBreakpoint) {
+    max-width: 1152px;
+  }
+}
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+
+  background-color: rgba(33, 33, 33, 0.32);
+  transition: $transition-opacity;
+
+  &.hidden {
+    & .mobile-menu {
+      transform: translateX(-100%);
+    }
+  }
+}
+
+.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.section-title {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  font-size: 20px;
+  font-weight: 900;
+  justify-content: center;
+
+  @media screen and (min-width: $desktopBreakpoint) {
+    text-align: unset;
+  }
+}
+
+.primary-btn {
+  @include emphasis-text-style;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  border-radius: 20px;
+  border: 3px solid $accent-color-light;
+  transition: $transition-color, $transition-bg;
+
+  &:hover,
+  &:focus {
+    color: #fff;
+    background-color: $accent-color-light;
+
+    & svg {
+      color: #fff;
+    }
+  }
+
+  &__icon {
+    color: $primary-text-color;
+    transition: $transition-color;
+  }
+}
+
+.secondary-btn {
+  @include emphasis-text-style;
+  display: flex;
+  align-items: center;
+  min-width: 150px;
+  height: 39px;
+  padding: 0 44px;
+  border: 3px solid $accent-color-light;
+
+  color: #fff;
+  border-radius: 20px;
+  background: $accent-color-light;
+}
+
+.options {
+  &__list {
+    display: flex;
+    align-self: center;
+    gap: 20px;
+  }
+
+  &__btn {
+    @include emphasis-text-style;
+    position: relative;
+    color: $accent-color-main;
+    transition: $transition-color;
+
+    &_active {
+      color: $primary-text-color;
+
+      &::after {
+        content: "";
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        display: block;
+        width: 100%;
+        height: 3px;
+        background-color: $accent-color-main;
+      }
+    }
+
+    &:hover,
+    &:focus {
+      color: $primary-text-color;
+    }
+  }
+}
+
+.header {
+  background-color: #ffffff;
+
+  &__inner {
+    height: 80px;
+    padding: 12px 0 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    @media screen and (min-width: $tabletBreakpoint) {
+      justify-content: flex-start;
+      gap: 20px;
+    }
+
+    @media screen and (min-width: $desktopBreakpoint) {
+      gap: 40px;
+    }
+  }
+}
+
+.burger-menu-btn {
+  display: block;
+
+  @media screen and (min-width: $tabletBreakpoint) {
+    display: none;
+  }
+}
+
+.menu {
+  @media screen and (min-width: $tabletBreakpoint) {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  @media screen and (min-width: $desktopBreakpoint) {
+    justify-content: flex-start;
+    gap: 124px;
+  }
+
+  &__list {
+    display: none;
+
+    @media screen and (min-width: $tabletBreakpoint) {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    @media screen and (min-width: $desktopBreakpoint) {
+      gap: 28px;
+    }
+  }
+
+  &__link {
+    @include emphasis-text-style;
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    transition: $transition-color;
+
+    &:hover,
+    &:focus {
+      color: $accent-color-light;
+
+      & svg {
+        color: $accent-color-main;
+      }
+    }
+
+    @media screen and (min-width: $tabletBreakpoint) {
+      font-weight: 700;
+    }
+
+    @media screen and (min-width: $desktopBreakpoint) {
+      font-weight: 900;
+    }
+  }
+
+  &__icon {
+    color: $accent-color-light;
+    transition: $transition-color;
+  }
+}
+
+.mobile-menu {
+  height: 100%;
+  width: 82%;
+  padding-bottom: 16px;
+  background: #fff;
+  box-shadow: 0px 4px 12px 0px rgba(99, 112, 147, 0.32);
+  transform: translateX(0);
+  transition: translate 1000ms ease-in, 250ms;
+
+  .close-btn {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+  }
+
+  &__list {
+    display: block;
+    padding-left: 4px;
+
+    .menu__link {
+      @include emphasis-text-style;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 42px;
+      padding-left: 32px;
+      padding-right: 16px;
+      transition: $transition-color, $transition-bg;
+
+      &:hover {
+        color: $accent-color-main;
+        background-color: #f5f8fa;
+
+        .menu__icon {
+          color: $accent-color-light;
+          opacity: 1;
+        }
+      }
+    }
+
+    .menu__icon {
+      color: #637093;
+      opacity: 0.3;
+      transform: rotate(-90deg);
+      transition: $transition-color, $transition-opacity;
+    }
+  }
+
+  .logo {
+    display: inline-block;
+    margin-bottom: 4px;
+    padding: 16px 28px;
+  }
+}
+
+.logo {
+  display: block;
+  padding: 15px 0;
+
+  &__icon {
+    width: 165.5px;
+    height: 28px;
+  }
+}
+
+.lang-switcher-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: $transition-color;
+
+  &:hover,
+  &:focus {
+    color: $accent-color-light;
+
+    & svg {
+      color: $accent-color-main;
+    }
+  }
+
+  @media screen and (min-width: $desktopBreakpoint) {
+    margin-left: auto;
+  }
+
+  &__icon {
+    width: 24px;
+    height: 24px;
+    color: $accent-color-light;
+    transition: $transition-color;
+  }
+
+  &__text {
+    @include emphasis-text-style;
+  }
+}
+
+.main {
+  background: #f3f6f9;
+}
+
+.sports-predictions {
+  margin-bottom: 70px;
+  padding-top: 16px;
+
+  @media screen and (min-width: $desktopBreakpoint) {
+    margin-bottom: 54.5px;
+  }
+
+  @media screen and (min-width: $desktopBreakpoint) {
+    padding-top: 28px;
+  }
+
+  &__header {
+    @media screen and (min-width: $desktopBreakpoint) {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+      margin-bottom: 27px;
+      padding-left: 8px;
+    }
+  }
+
+  &__title {
+    margin-bottom: 16px;
+
+    @media screen and (min-width: $desktopBreakpoint) {
+      margin-bottom: 0;
+    }
+  }
+
+  &__options {
+    margin-bottom: 23px;
+
+    @media screen and (min-width: $desktopBreakpoint) {
+      margin-bottom: 0;
+    }
+  }
+
+  &__options-list {
+    justify-content: center;
+  }
+
+  &__list {
+    margin-bottom: 30px;
+
+    @media screen and (min-width: $tabletBreakpoint) {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 16px 30px;
+    }
+
+    @media screen and (min-width: $desktopBreakpoint) {
+      margin-bottom: 33px;
+      justify-content: space-between;
+      flex-wrap: nowrap;
+      gap: 24px;
+    }
+  }
+
+  &__btn {
+    min-width: 200px;
+    height: 38px;
+    margin: 0 auto;
+    padding: 0 12px 0 20px;
+  }
+}
+
+.warning-text {
+  margin-bottom: 30px;
+  color: red;
+  text-align: center;
+}
+
+.prediction {
+  &__item + &__item {
+    margin-top: 12px;
+
+    @media screen and (min-width: $tabletBreakpoint) {
+      margin-top: 0;
+    }
+  }
+
+  &__item {
+    position: relative;
+    max-width: 336px;
+    border-radius: 12px;
+    background: #fff;
+
+    @media screen and (min-width: $desktopBreakpoint) {
+      max-width: unset;
+      flex-basis: 360px;
+    }
+  }
+
+  &__image-wrapper {
+    height: 130px;
+    border-radius: 12px 12px 0px 0px;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  &__content {
+    padding: 16px 20px 20px;
+  }
+
+  &__text {
+    margin-bottom: 4px;
+    color: rgba(99, 112, 147, 0.3);
+    font-size: 12px;
+    line-height: 1.33;
+  }
+
+  &__text-sport {
+    color: $accent-color-main;
+    font-weight: 900;
+  }
+
+  &__text-time {
+    color: #637093;
+  }
+
+  &__title {
+    min-height: 72px;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.33;
+  }
+
+  &__popular-text {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 24px;
+    border: 3px solid #fd6230;
+    padding: 0 12px;
+    transform: translate(-50%, -35%);
+
+    border-radius: 12px;
+    background: #fedb0d;
+    font-size: 12px;
+    font-weight: 900;
+    line-height: 1.33;
+    text-transform: uppercase;
+  }
+}
+
+.content__inner {
+  display: block;
+
+  @media screen and (min-width: $tabletBreakpoint) {
+    display: flex;
+    gap: 24px;
+  }
+}
+
+.matches {
+  margin-bottom: 53px;
+
+  @media screen and (min-width: $tabletBreakpoint) {
+    flex: 1;
+    order: 1;
+  }
+
+  &__header {
+    margin-bottom: 31px;
+
+    @media screen and (min-width: $desktopBreakpoint) {
+      margin-bottom: 25px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+
+  &__title {
+    margin-bottom: 24px;
+
+    @media screen and (min-width: $desktopBreakpoint) {
+      margin-bottom: 0;
+    }
+  }
+
+  &__options {
+    display: flex;
+    align-self: center;
+    gap: 20px;
+    overflow-x: scroll;
+    overflow-y: initial;
+    scrollbar-width: thin;
+    scrollbar-color: #888 #f5f5f5;
+    padding-bottom: 12px;
+
+    &::-webkit-scrollbar {
+      height: 8px;
+      border-radius: 12px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: #888;
+    }
+
+    &::-webkit-scrollbar-track {
+      background-color: #f5f5f5;
+    }
+    & {
+      -ms-overflow-style: -ms-autohiding-scrollbar;
+    }
+
+    @media screen and (min-width: $tabletBreakpoint) {
+      overflow-x: hidden;
+    }
+
+    @media screen and (min-width: $desktopBreakpoint) {
+      gap: 56px;
+    }
+  }
+
+  &__options-list {
+    @media screen and (min-width: $desktopBreakpoint) {
+      gap: 24px;
+    }
+  }
+
+  &__options-item {
+    @media screen and (min-width: $desktopBreakpoint) {
+      &:first-child {
+        margin-right: 24px;
+      }
+    }
+  }
+
+  &__content {
+    margin-bottom: 26px;
+  }
+
+  &__item + &__item {
+    margin-top: 12px;
+
+    @media screen and (min-width: $desktopBreakpoint) {
+      margin-top: 4px;
+    }
+  }
+
+  &__wrapper {
+    border-radius: 12px;
+    background: #fff;
+    display: block;
+    position: relative;
+    transition: $transition-shadow;
+    cursor: pointer;
+
+    &:hover {
+      box-shadow: 0px 4px 12px 0px rgba(99, 112, 147, 0.12);
+    }
+
+    @media screen and (min-width: $desktopBreakpoint) {
+      padding: 8px 10px 8px 16px;
+      height: 56px;
+    }
+  }
+
+  &__time {
+    display: block;
+    padding: 8px 16px;
+    border-bottom: 1px solid rgba(99, 112, 147, 0.12);
+
+    color: #637093;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.67;
+
+    @media screen and (min-width: $desktopBreakpoint) {
+      border: 0;
+      padding: 0;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      left: 16px;
+    }
+  }
+
+  &__time_accent {
+    font-weight: 700;
+  }
+
+  &__teams-content {
+    height: 84px;
+    padding: 12px 16px 16px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 8px;
+
+    @media screen and (min-width: $desktopBreakpoint) {
+      height: 100%;
+      flex-direction: row;
+      align-items: center;
+      flex: 1;
+      padding: 0;
+      gap: 20px;
+    }
+  }
+
+  &__team-item + &__team-item {
+    margin-top: 8px;
+
+    @media screen and (min-width: $desktopBreakpoint) {
+      margin-top: 0;
+    }
+  }
+
+  &__team-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    @media screen and (min-width: $desktopBreakpoint) {
+      flex: 1;
+
+      &:first-child {
+        justify-content: flex-end;
+
+        & .matches__team-logo {
+          order: 1;
+        }
+      }
+    }
+  }
+
+  &__item_live {
+    .matches__time {
+      color: #fd6230;
+    }
+    .matches__team-main-score {
+      color: #fd6230;
+    }
+    .matches__team-additional-score {
+      color: #fd6230;
+    }
+  }
+  &__team-scores {
+    align-self: flex-end;
+    order: 1;
+
+    @media screen and (min-width: $desktopBreakpoint) {
+      order: 0;
+      align-self: center;
+    }
+  }
+
+  &__team-scores_multi {
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 7px;
+
+    @media screen and (min-width: $desktopBreakpoint) {
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2px;
+
+      & span {
+        height: 20px;
+      }
+    }
+  }
+
+  &__team-main-score {
+    display: flex;
+    flex-direction: column;
+
+    font-size: 18px;
+    font-weight: 900;
+    line-height: 1.55;
+    color: rgba(99, 112, 147, 0.3);
+
+    &_active {
+      color: $primary-text-color;
+    }
+
+    @media screen and (min-width: $desktopBreakpoint) {
+      flex-direction: row;
+      gap: 6px;
+    }
+  }
+
+  &__team-additional-score {
+    display: flex;
+    flex-direction: column;
+
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.55;
+    color: #637093;
+
+    @media screen and (min-width: $desktopBreakpoint) {
+      flex-direction: row;
+      gap: 2px;
+      font-size: 14px;
+      line-height: 1.14;
+    }
+  }
+
+  &__prediction-btn {
+    position: absolute;
+    min-width: 99px;
+    height: 37px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    top: 0;
+    right: 0px;
+
+    color: $accent-color-main;
+    border-radius: 12px;
+    transition: $transition-bg;
+    border-bottom-right-radius: 0;
+
+    &:hover,
+    &:focus {
+      background: rgba(86, 133, 255, 0.08);
+    }
+
+    @media screen and (min-width: $desktopBreakpoint) {
+      top: 50%;
+      transform: translateY(-50%);
+      right: 20px;
+      border-radius: 40px;
+      height: 32px;
+    }
+  }
+
+  &__prediction-text {
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1.67;
+  }
+
+  &__btn {
+    margin: 0 auto;
+    padding: 8px 12px 8px 20px;
+
+    @media screen and (min-width: $desktopBreakpoint) {
+      display: none;
+    }
+  }
+}
+
+.colon {
+  display: none;
+
+  @media screen and (min-width: $desktopBreakpoint) {
+    display: block;
+  }
+}
+
+.calendar-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  @media screen and (min-width: $desktopBreakpoint) {
+    order: 1;
+  }
+
+  &__text {
+    @include emphasis-text-style;
+    color: $accent-color-main;
+    line-height: 1.43;
+  }
+}
+
+.leagues {
+  padding-bottom: 77px;
+
+  @media screen and (min-width: $tabletBreakpoint) {
+    flex: 1;
+  }
+
+  @media screen and (min-width: $desktopBreakpoint) {
+    flex: unset;
+    flex-basis: 264px;
+  }
+
+  &__title {
+    margin-bottom: 16px;
+
+    @media screen and (min-width: $desktopBreakpoint) {
+      margin-bottom: 25px;
+    }
+  }
+
+  &__content {
+    padding: 16px 16px 20px;
+    border-radius: 12px;
+    background: #fff;
+  }
+
+  &__list {
+    margin-bottom: 20px;
+  }
+
+  &__item + &__item {
+    margin-top: 20px;
+  }
+
+  &__link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.43;
+    transition: $transition-color;
+
+    &:hover,
+    &:focus {
+      color: $accent-color-light;
+    }
+  }
+
+  &__btn {
+    margin: 0 auto;
+  }
+}

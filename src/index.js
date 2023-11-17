@@ -1,5 +1,6 @@
-import './styles/global.scss';
+import "./js/leagues";
+import "./js/matches";
+import "./js/sportsPredictions";
+import "./js/mobileMenu";
 
-import { sayHello } from './utils/say-hello';
-
-sayHello();
+import "./styles/styles.scss";

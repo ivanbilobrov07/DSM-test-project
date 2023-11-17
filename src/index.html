@@ -1,16 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
-
-<head>
+<html lang="ru">
+  <head>
     <!-- ESSENTIAL -->
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <!-- GENERAL -->
-    <title>
-        <%= htmlWebpackPlugin.options.title %>
-    </title>
+    <title><%= htmlWebpackPlugin.options.title %></title>
     <!-- prettier-ignore -->
     <link rel="manifest" href=<%=htmlWebpackPlugin.options.manifest %>
     />
@@ -38,13 +35,210 @@
     <!-- ANDROID -->
     <meta name="theme-color" content="#000" />
     <meta name="mobile-web-app-capable" content="yes" />
-</head>
+  </head>
 
-<body>
-    <noscript class="text-center text-lg text-red-500">
-        Enable JavaScript to enjoy all the features of this app.
-    </noscript>
-    <h1>Привет! Это базовый шаблон для создания вашильного приложения на JS с Webpack!</h1>
+  <body>
+    <header class="header">
+      <div class="container">
+        <div class="header__inner">
+          <button class="burger-menu-btn">
+            <svg width="32" height="32">
+              <use href="./assets/images/sprite.svg#icon-menu"></use>
+            </svg>
+          </button>
+          <nav class="menu">
+            <a class="logo" href="#">
+              <svg class="logo__icon">
+                <use href="./assets/images/sprite.svg#icon-logo"></use>
+              </svg>
+            </a>
+            <ul class="menu__list">
+              <li class="menu__item">
+                <a class="menu__link" href="#"
+                  >Прогнозы
+                  <svg width="12" height="12" class="menu__icon">
+                    <use href="./assets/images/sprite.svg#icon-dropdown"></use></svg
+                ></a>
+              </li>
+              <li class="menu__item">
+                <a class="menu__link" href="#"
+                  >Бонусы<svg width="12" height="12" class="menu__icon">
+                    <use href="./assets/images/sprite.svg#icon-dropdown"></use></svg
+                ></a>
+              </li>
+              <li class="menu__item">
+                <a class="menu__link" href="#"
+                  >Букмекеры<svg width="12" height="12" class="menu__icon">
+                    <use href="./assets/images/sprite.svg#icon-dropdown"></use></svg
+                ></a>
+              </li>
+              <li class="menu__item"><a class="menu__link" href="#">Новости</a></li>
+              <li class="menu__item"><a class="menu__link" href="#">Робобет</a></li>
+              <li class="menu__item"><a class="menu__link" href="#">Блог</a></li>
+            </ul>
+          </nav>
+          <button class="lang-switcher-btn">
+            <svg class="lang-switcher-btn__icon">
+              <use href="./assets/images/sprite.svg#icon-planet"></use>
+            </svg>
+            <span class="lang-switcher-btn__text">Рус</span>
+          </button>
+        </div>
+      </div>
+    </header>
+    <main class="main">
+      <section class="sports-predictions">
+        <div class="container">
+          <div class="sports-predictions__header">
+            <h2 class="sports-predictions__title section-title">
+              <svg width="16" height="16">
+                <use href="./assets/images/sprite.svg#icon-slash"></use>
+              </svg>
+              Прогнозы на спорт
+              <svg width="16" height="16">
+                <use href="./assets/images/sprite.svg#icon-slash"></use>
+              </svg>
+            </h2>
+            <nav class="sports-predictions__options options">
+              <ul class="sports-predictions__options-list options__list">
+                <li class="sports-predictions__options-item options__item">
+                  <button
+                    data-predictions-query="all"
+                    class="sports-predictions__options-btn options__btn options__btn_active"
+                  >
+                    Все
+                  </button>
+                </li>
+                <li class="sports-predictions__options-item options__item">
+                  <button data-predictions-query="today" class="sports-predictions__options-btn options__btn">
+                    Сегодня
+                  </button>
+                </li>
+                <li class="sports-predictions__options-item options__item">
+                  <button data-predictions-query="tomorrow" class="sports-predictions__options-btn options__btn">
+                    Завтра
+                  </button>
+                </li>
+              </ul>
+            </nav>
+          </div>
+          <div class="sports-predictions__content"></div>
+          <button class="sports-predictions__btn primary-btn">
+            Больше прогнозов
+            <svg width="24" height="24" class="primary-btn__icon">
+              <use href="./assets/images/sprite.svg#icon-right-arrow"></use>
+            </svg>
+          </button>
+        </div>
+      </section>
+      <div class="content">
+        <div class="container">
+          <div class="content__inner">
+            <section class="matches">
+              <div class="matches__header">
+                <h2 class="matches__title section-title">
+                  <svg width="16" height="16">
+                    <use href="./assets/images/sprite.svg#icon-slash"></use>
+                  </svg>
+                  Матч-центр
+                  <svg width="16" height="16">
+                    <use href="./assets/images/sprite.svg#icon-slash"></use>
+                  </svg>
+                </h2>
+                <div class="matches__options options">
+                  <button class="calendar-btn">
+                    <svg class="calendar-btn__icon" width="24" height="24">
+                      <use href="./assets/images/sprite.svg#icon-calendar"></use>
+                    </svg>
+                    <span class="calendar-btn__text">Календарь</span>
+                  </button>
+                  <ul class="matches__options-list options__list">
+                    <li class="matches__options-item options__item">
+                      <button class="matches__options-btn options__btn">Live</button>
+                    </li>
+                    <li class="matches__options-item options__item">
+                      <button class="matches__options-btn options__btn">05.06</button>
+                    </li>
+                    <li class="matches__options-item options__item">
+                      <button class="matches__options-btn options__btn">Вчера</button>
+                    </li>
+                    <li class="matches__options-item options__item">
+                      <button class="matches__options-btn options__btn options__btn_active">Сегодня</button>
+                    </li>
+                    <li class="matches__options-item options__item">
+                      <button class="matches__options-btn options__btn">Завтра</button>
+                    </li>
+                    <li class="matches__options-item options__item">
+                      <button class="matches__options-btn options__btn">09.06</button>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="matches__content">
+                <ul class="matches__list"></ul>
+              </div>
+              <button class="matches__btn primary-btn">
+                Все матчи
+                <svg width="24" height="24" class="primary-btn__icon">
+                  <use href="./assets/images/sprite.svg#icon-right-arrow"></use>
+                </svg>
+              </button>
+            </section>
+            <section class="leagues">
+              <h2 class="leagues__title section-title">
+                <svg width="16" height="16">
+                  <use href="./assets/images/sprite.svg#icon-slash"></use></svg
+                >Топ лиги<svg width="16" height="16">
+                  <use href="./assets/images/sprite.svg#icon-slash"></use>
+                </svg>
+              </h2>
+              <div class="leagues__content">
+                <ul class="leagues__list"></ul>
+                <button class="leagues__btn secondary-btn">Все лиги</button>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
     </main>
-</body>
+    <div class="backdrop hidden">
+      <div class="mobile-menu">
+        <a class="logo" href="#">
+          <svg class="logo__icon">
+            <use href="./assets/images/sprite.svg#icon-logo"></use>
+          </svg>
+        </a>
+        <button class="mobile-menu__btn close-btn">
+          <svg class="close-btn__icon" width="32" height="32">
+            <use href="./assets/images/sprite.svg#icon-close"></use>
+          </svg>
+        </button>
+        <ul class="mobile-menu__list menu__list">
+          <li class="menu__item"><a class="menu__link" href="#">Прогнозы</a></li>
+          <li class="menu__item">
+            <a class="menu__link" href="#"
+              >Бонусы
+              <svg width="16" height="16" class="menu__icon">
+                <use href="./assets/images/sprite.svg#icon-dropdown"></use>
+              </svg>
+            </a>
+          </li>
+          <li class="menu__item">
+            <a class="menu__link" href="#"
+              >Букмекеры<svg width="16" height="16" class="menu__icon">
+                <use href="./assets/images/sprite.svg#icon-dropdown"></use></svg
+            ></a>
+          </li>
+          <li class="menu__item">
+            <a class="menu__link" href="#"
+              >Новости<svg width="16" height="16" class="menu__icon">
+                <use href="./assets/images/sprite.svg#icon-dropdown"></use></svg
+            ></a>
+          </li>
+          <li class="menu__item"><a class="menu__link" href="#">Робобет</a></li>
+          <li class="menu__item"><a class="menu__link" href="#">Блог</a></li>
+        </ul>
+      </div>
+    </div>
+  </body>
 </html>
